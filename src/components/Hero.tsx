@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-business.jpg";
 
 const Hero = () => {
@@ -22,19 +23,23 @@ const Hero = () => {
           Your trusted partner in international trade, consultancy, and business solutions across multiple industries
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            size="lg" 
-            className="bg-gradient-gold hover:opacity-90 text-primary-navy font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-luxury"
-          >
-            Explore Services
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="border-white/20 text-white hover:bg-white/10 px-8 py-4 text-lg transition-all duration-300"
-          >
-            Contact Us
-          </Button>
+          <Link to="/services">
+            <Button 
+              size="lg" 
+              className="bg-gradient-gold hover:opacity-90 text-primary-navy font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-luxury"
+            >
+              Explore Services
+            </Button>
+          </Link>
+          <Link to="/contact">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white/20 text-white hover:bg-white/10 px-8 py-4 text-lg transition-all duration-300"
+            >
+              Contact Us
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
