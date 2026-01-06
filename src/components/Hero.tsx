@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-business.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
@@ -10,7 +9,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url('/hero image.jpg')` }}
       >
         <div className="absolute inset-0 bg-primary-navy/70"></div>
       </div>

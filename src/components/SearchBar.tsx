@@ -7,9 +7,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SearchBarProps {
   onServiceSelect?: (serviceId: string) => void;
+  isScrolled?: boolean;
 }
 
-const SearchBar = ({ onServiceSelect }: SearchBarProps) => {
+const SearchBar = ({ onServiceSelect, isScrolled = false }: SearchBarProps) => {
   const { t } = useLanguage();
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,9 @@ const SearchBar = ({ onServiceSelect }: SearchBarProps) => {
   return (
     <div className="relative w-full max-w-md">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary w-4 h-4" />
+        <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors ${
+          isScrolled ? "text-text-secondary" : "text-white/80"
+        }`} />
         <Input
           type="text"
           placeholder={t("searchPlaceholder")}
@@ -54,7 +57,11 @@ const SearchBar = ({ onServiceSelect }: SearchBarProps) => {
             setIsOpen(e.target.value.length > 0);
           }}
           onFocus={() => setIsOpen(query.length > 0)}
-          className="pl-10 pr-10 border-border/50 focus:border-primary"
+          className={`pl-10 pr-10 transition-all ${
+            isScrolled 
+              ? "border-border/50 focus:border-primary bg-background text-foreground" 
+              : "border-white/30 focus:border-white/50 bg-white/20 text-white placeholder:text-white/60"
+          }`}
         />
         {query && (
           <Button
@@ -64,7 +71,9 @@ const SearchBar = ({ onServiceSelect }: SearchBarProps) => {
               setQuery("");
               setIsOpen(false);
             }}
-            className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0"
+            className={`absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 transition-colors ${
+              isScrolled ? "" : "text-white hover:bg-white/20"
+            }`}
           >
             <X className="w-4 h-4" />
           </Button>
