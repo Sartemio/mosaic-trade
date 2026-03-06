@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { MessageCircle, X, Send, Paperclip, Phone, PhoneOff, Mic, MicOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -153,26 +152,22 @@ const AIChatBot = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("customer-support-chat", {
-        body: { 
-          messages: [...messages, userMessage].map(m => ({ role: m.role, content: m.content })),
-          language,
-          hasAttachments: attachmentInfos.length > 0
-        },
-      });
-
-      if (error) throw error;
-
+      const contactHint =
+        language === "fr"
+          ? "Pour une assistance immédiate, utilisez notre formulaire de contact ou écrivez-nous à info@biqueglobal.com."
+          : language === "pt"
+            ? "Para assistência imediata, use nosso formulário de contato ou envie um e-mail para info@biqueglobal.com."
+            : "For immediate assistance, please use our Contact form or email us at info@biqueglobal.com.";
       const assistantMessage: Message = {
         role: "assistant",
-        content: data.message,
+        content: contactHint,
       };
       setMessages((prev) => [...prev, assistantMessage]);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: error.message || "Failed to send message. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -188,137 +183,11 @@ const AIChatBot = () => {
   };
 
   const startVoiceCall = useCallback(async () => {
-    if (isConnecting) return;
-    
-    setIsConnecting(true);
-    
-    try {
-      // Get ephemeral token from edge function
-      const { data: tokenData, error: tokenError } = await supabase.functions.invoke("realtime-session", {
-        body: { language }
-      });
-      
-      if (tokenError || !tokenData?.client_secret?.value) {
-        throw new Error(tokenError?.message || "Failed to get session token");
-      }
-
-      const EPHEMERAL_KEY = tokenData.client_secret.value;
-
-      // Create audio element
-      if (!audioElRef.current) {
-        audioElRef.current = document.createElement("audio");
-        audioElRef.current.autoplay = true;
-      }
-
-      // Create peer connection
-      const pc = new RTCPeerConnection();
-      pcRef.current = pc;
-
-      // Set up remote audio
-      pc.ontrack = (e) => {
-        if (audioElRef.current) {
-          audioElRef.current.srcObject = e.streams[0];
-        }
-      };
-
-      // Add local audio track
-      const ms = await navigator.mediaDevices.getUserMedia({ audio: true });
-      pc.addTrack(ms.getTracks()[0]);
-
-      // Set up data channel
-      const dc = pc.createDataChannel("oai-events");
-      dcRef.current = dc;
-      
-      dc.addEventListener("message", (e) => {
-        const event = JSON.parse(e.data);
-        console.log("Realtime event:", event.type, event);
-        
-        // Handle different event types
-        if (event.type === "session.created") {
-          console.log("Session created, sending session update");
-          // Session is ready - configuration was already set in the edge function
-        } else if (event.type === "session.updated") {
-          console.log("Session updated successfully");
-        } else if (event.type === "response.audio.delta") {
-          setIsListening(false);
-        } else if (event.type === "response.audio.done") {
-          setIsListening(true);
-        } else if (event.type === "response.done") {
-          console.log("Response completed");
-          setIsListening(true);
-        } else if (event.type === "input_audio_buffer.speech_started") {
-          console.log("User started speaking");
-          setIsListening(true);
-        } else if (event.type === "input_audio_buffer.speech_stopped") {
-          console.log("User stopped speaking");
-          setIsListening(false);
-        } else if (event.type === "response.audio_transcript.done" && event.transcript) {
-          // Add AI response to chat
-          console.log("AI transcript:", event.transcript);
-          setMessages(prev => [...prev, { role: "assistant", content: event.transcript }]);
-        } else if (event.type === "conversation.item.input_audio_transcription.completed" && event.transcript) {
-          // Add user speech to chat
-          console.log("User transcript:", event.transcript);
-          setMessages(prev => [...prev, { role: "user", content: event.transcript }]);
-        } else if (event.type === "error") {
-          console.error("Realtime API error:", event.error);
-          toast({
-            title: "Error",
-            description: event.error?.message || "Voice call error",
-            variant: "destructive",
-          });
-        }
-      });
-
-      dc.addEventListener("open", () => {
-        console.log("Data channel open - ready for conversation");
-      });
-
-      // Create and set local description
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-
-      // Connect to OpenAI's Realtime API
-      const baseUrl = "https://api.openai.com/v1/realtime";
-      const model = "gpt-4o-realtime-preview-2024-12-17";
-      const sdpResponse = await fetch(`${baseUrl}?model=${model}`, {
-        method: "POST",
-        body: offer.sdp,
-        headers: {
-          Authorization: `Bearer ${EPHEMERAL_KEY}`,
-          "Content-Type": "application/sdp"
-        },
-      });
-
-      if (!sdpResponse.ok) {
-        throw new Error("Failed to connect to OpenAI Realtime");
-      }
-
-      const answer: RTCSessionDescriptionInit = {
-        type: "answer",
-        sdp: await sdpResponse.text(),
-      };
-      
-      await pc.setRemoteDescription(answer);
-      
-      setIsInCall(true);
-      setIsListening(true);
-      
-      toast({
-        title: t.callStarted,
-      });
-    } catch (error: any) {
-      console.error("Voice call error:", error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to start voice call",
-        variant: "destructive",
-      });
-      endVoiceCall();
-    } finally {
-      setIsConnecting(false);
-    }
-  }, [language, isConnecting, t, toast]);
+    toast({
+      title: t.voiceNotSupported,
+      variant: "default",
+    });
+  }, [t, toast]);
 
   const endVoiceCall = useCallback(() => {
     if (dcRef.current) {

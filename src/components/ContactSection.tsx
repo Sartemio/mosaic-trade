@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Clock, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
+import { sendContactForm } from "@/lib/api";
 import { toast } from "sonner";
 
 const ContactSection = () => {
@@ -25,12 +25,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
-      });
-
-      if (error) throw error;
-
+      await sendContactForm(formData);
       toast.success(t("messageSent") || "Message sent successfully!");
       setFormData({ name: "", email: "", company: "", phone: "", subject: "", message: "" });
     } catch (error) {
@@ -49,7 +44,7 @@ const ContactSection = () => {
     {
       icon: Mail,
       titleKey: "emailUs",
-      details: "biqueglobalenterprise@gmail.com",
+      details: "info@biqueglobal.com",
       subtitle: ""
     },
     {

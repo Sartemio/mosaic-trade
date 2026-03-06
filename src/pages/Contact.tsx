@@ -1,20 +1,60 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin, Clock, Send, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { sendContactForm } from "@/lib/api";
+import { toast } from "sonner";
 
 const Contact = () => {
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    subject: "",
+    message: "",
+    serviceOfInterest: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await sendContactForm({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || undefined,
+        phone: formData.phone || undefined,
+        subject: formData.subject,
+        message: formData.message,
+        serviceOfInterest: formData.serviceOfInterest ? t(formData.serviceOfInterest) : undefined,
+      });
+      toast.success(t("messageSent") || "Message sent successfully!");
+      setFormData({ name: "", email: "", company: "", phone: "", subject: "", message: "", serviceOfInterest: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error(t("messageError") || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const contactInfo = [
     {
       icon: Mail,
       titleKey: "emailUs",
-      details: "biqueglobalenterprise@gmail.com",
+      details: "info@biqueglobal.com",
       subtitle: ""
     },
     {
@@ -90,94 +130,130 @@ const Contact = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-text-primary mb-2">
+                          {t("fullName")} *
+                        </label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder={t("fullName")}
+                          className="border-border/50 focus:border-primary"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-text-primary mb-2">
+                          {t("emailAddress")} *
+                        </label>
+                        <Input
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder={t("emailAddress")}
+                          type="email"
+                          className="border-border/50 focus:border-primary"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-text-primary mb-2">
+                          {t("companyName")}
+                        </label>
+                        <Input
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder={t("companyName")}
+                          className="border-border/50 focus:border-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-text-primary mb-2">
+                          {t("phoneNumber")}
+                        </label>
+                        <Input
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder={t("phoneNumber")}
+                          className="border-border/50 focus:border-primary"
+                        />
+                      </div>
+                    </div>
+
                     <div>
                       <label className="block text-sm font-medium text-text-primary mb-2">
-                        {t("fullName")} *
+                        {t("serviceOfInterest")}
                       </label>
-                      <Input 
-                        placeholder={t("fullName")}
-                        className="border-border/50 focus:border-primary" 
-                      />
+                      <Select
+                        value={formData.serviceOfInterest || undefined}
+                        onValueChange={(value) => setFormData((prev) => ({ ...prev, serviceOfInterest: value }))}
+                      >
+                        <SelectTrigger className="border-border/50 focus:border-primary">
+                          <SelectValue placeholder={t("selectService")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {serviceKeys.map((key) => (
+                            <SelectItem key={key} value={key}>
+                              {t(key)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
+
                     <div>
                       <label className="block text-sm font-medium text-text-primary mb-2">
-                        {t("emailAddress")} *
+                        {t("subject")} *
                       </label>
-                      <Input 
-                        placeholder={t("emailAddress")}
-                        type="email" 
-                        className="border-border/50 focus:border-primary" 
+                      <Input
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        placeholder={t("subject")}
+                        className="border-border/50 focus:border-primary"
+                        required
                       />
                     </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                     <div>
                       <label className="block text-sm font-medium text-text-primary mb-2">
-                        {t("companyName")}
+                        {t("message")} *
                       </label>
-                      <Input 
-                        placeholder={t("companyName")}
-                        className="border-border/50 focus:border-primary" 
+                      <Textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder={t("message")}
+                        rows={6}
+                        className="border-border/50 focus:border-primary resize-none"
+                        required
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-text-primary mb-2">
-                        {t("phoneNumber")}
-                      </label>
-                      <Input 
-                        placeholder={t("phoneNumber")}
-                        className="border-border/50 focus:border-primary" 
-                      />
-                    </div>
-                  </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {t("serviceOfInterest")}
-                    </label>
-                    <Select>
-                      <SelectTrigger className="border-border/50 focus:border-primary">
-                        <SelectValue placeholder={t("selectService")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {serviceKeys.map((key) => (
-                          <SelectItem key={key} value={key}>
-                            {t(key)}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {t("subject")} *
-                    </label>
-                    <Input 
-                      placeholder={t("subject")}
-                      className="border-border/50 focus:border-primary" 
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {t("message")} *
-                    </label>
-                    <Textarea 
-                      placeholder={t("message")}
-                      rows={6}
-                      className="border-border/50 focus:border-primary resize-none"
-                    />
-                  </div>
-
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-gradient-primary hover:opacity-90 transition-opacity shadow-elegant"
-                  >
-                    {t("send")}
-                  </Button>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-gradient-primary hover:opacity-90 transition-opacity shadow-elegant"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          {t("sending") || "Sending..."}
+                        </>
+                      ) : (
+                        t("send")
+                      )}
+                    </Button>
+                  </form>
 
                   <p className="text-sm text-text-secondary text-center">
                     {t("responseTime")}

@@ -25,231 +25,282 @@ const serviceDetails = {
     icon: Globe,
     title: "General Trading",
     category: "Export/Import",
-    description: "Comprehensive export/import solutions for diverse product categories worldwide",
-    longDescription: "Our General Trading division offers end-to-end import and export solutions across multiple product categories. With extensive experience in international markets, we facilitate seamless trade operations between global suppliers and buyers.",
+    description: "Import and export of diversified goods, connecting global markets through Dubai.",
+    longDescription: "Our General Trading division acts as an international hub connecting Asia, Europe, and Africa. We move both raw materials and finished products across borders, managing documentation, compliance, and logistics so that our clients can focus on their core business.",
+    highlights: [
+      "Import and export of diversified goods, including raw materials and finished products",
+      "Acting as an international trading hub connecting Asia, Europe, and Africa"
+    ],
     features: [
-      "Multi-product category expertise",
-      "Global supplier network",
-      "Customs clearance assistance",
-      "Quality assurance programs",
-      "Market research and analysis",
-      "Risk management solutions"
+      "Multi-category sourcing of raw materials and finished products",
+      "Established network of suppliers and off-takers across Asia, Europe, and Africa",
+      "End-to-end trade documentation and customs coordination",
+      "Quality and compliance checks aligned with destination-market standards",
+      "Market intelligence on pricing, demand, and trade regulations",
+      "Flexible trade structures including direct export, re-export, and agency models"
     ],
     benefits: [
-      "Access to worldwide markets",
-      "Reduced operational costs",
-      "Streamlined logistics",
-      "Regulatory compliance support"
+      "Access to multiple international markets through a single trading partner",
+      "Reduced operational complexity and faster go-to-market cycles",
+      "Optimised logistics costs via consolidated shipments and re-export flows",
+      "Lower regulatory and documentation risk through experienced trade support"
     ]
   },
   "food-beverages": {
     icon: ShoppingCart,
     title: "Food & Beverages",
     category: "F&B Trading",
-    description: "Specialized import and export of quality food products and beverages",
-    longDescription: "We specialize in the import and export of premium food products and beverages, ensuring the highest quality standards and regulatory compliance across international markets.",
+    description: "International trade of food products and non‑alcoholic beverages with GCC and Asian reach.",
+    longDescription: "Our Food & Beverage trade desk focuses on safe, compliant, and efficient movement of food products and non‑alcoholic beverages. Using the UAE as a re‑export hub, we connect producers and brand owners with fast‑growing GCC and Asian markets.",
+    highlights: [
+      "International trade of food products and non-alcoholic beverages",
+      "Re-export hub supplying GCC and Asian markets"
+    ],
     features: [
-      "Cold chain logistics",
-      "Food safety certifications",
-      "Halal and organic products",
-      "Private label services",
-      "Seasonal product sourcing",
-      "Packaging solutions"
+      "Sourcing of branded and private‑label food and beverage products",
+      "Experience with GCC, Asian, and African food import regulations",
+      "Temperature‑controlled and dry supply chain options",
+      "Halal, organic, and specialty product handling capabilities",
+      "Re‑export structuring from UAE free‑zones to regional markets",
+      "Support with labelling, packaging, and product adaptation"
     ],
     benefits: [
-      "Quality guaranteed products",
-      "Temperature-controlled transport",
-      "Certification assistance",
-      "Market entry support"
+      "Accelerated market entry into GCC and Asian food corridors",
+      "Reduced product spoilage and quality risks through structured logistics",
+      "Easier regulatory navigation for importers and brand owners",
+      "Access to a diversified portfolio of suppliers and buyers"
     ]
   },
   "car-export": {
     icon: Car,
     title: "Car Export",
     category: "Automotive",
-    description: "Professional automotive export services with global logistics support",
-    longDescription: "Our automotive export division provides comprehensive services for vehicle exports, from documentation to delivery, ensuring your vehicles reach their destination safely and efficiently.",
+    description: "Export of new and used vehicles, spare parts, and custom vehicle upgrades.",
+    longDescription: "From individual units to bulk fleets, we manage the export of new and used vehicles and spare parts from the UAE to global markets. Our team also coordinates vehicle customization so that exports meet regulatory, performance, or branding requirements.",
+    highlights: [
+      "Trading of new and used vehicles and spare parts",
+      "Vehicle upgrading and customization services"
+    ],
     features: [
-      "Vehicle inspection services",
-      "Export documentation",
-      "Shipping arrangements",
-      "Insurance coverage",
-      "Port handling services",
-      "Destination clearance"
+      "Sourcing of passenger cars, SUVs, commercial vehicles, and specialty units",
+      "Export of OEM and aftermarket spare parts",
+      "Vehicle modification and upgrade coordination (suspension, body kits, interiors, branding)",
+      "Pre‑export inspection and condition reporting",
+      "Shipping and port handling across Ro‑Ro and container routes",
+      "Destination‑specific documentation and compliance support"
     ],
     benefits: [
-      "Professional handling",
-      "Competitive shipping rates",
-      "Complete insurance coverage",
-      "Track and trace systems"
+      "Access to competitive vehicle and spare‑part supply from the UAE",
+      "Higher resale value through tailored upgrades and customization",
+      "Reduced export risk via structured inspection and documentation",
+      "Streamlined end‑to‑end logistics for global automotive buyers"
     ]
   },
   "hr-consultancy": {
     icon: Users,
     title: "HR Consultancy",
     category: "Consultancy",
-    description: "Expert human resource consulting and talent management solutions",
-    longDescription: "Our HR consultancy services help businesses optimize their human capital through strategic planning, talent acquisition, and organizational development solutions.",
+    description: "Strategic HR consulting, talent management, and workforce mobility for the UAE.",
+    longDescription: "Our Human Resources Consultancy supports organisations in the UAE with recruitment, workforce planning, and people‑operations strategies. We help employers attract the right talent, structure compliant employment models, and manage labour mobility across borders.",
+    highlights: [
+      "Recruitment consulting, talent management, and workforce mobility",
+      "Outsourcing and labor migration solutions for the UAE market"
+    ],
     features: [
-      "Talent acquisition services",
-      "Organizational restructuring",
-      "Performance management systems",
-      "Training and development",
-      "HR policy development",
-      "Compensation planning"
+      "End‑to‑end recruitment support for white‑collar and blue‑collar roles",
+      "Design of talent management and performance frameworks",
+      "Advisory on workforce planning and organisational structure",
+      "HR outsourcing models for non‑core functions",
+      "Support with labour migration, visas, and regulatory compliance in the UAE",
+      "Training and capability‑building programmes for HR teams"
     ],
     benefits: [
-      "Improved employee retention",
-      "Enhanced productivity",
-      "Compliance assurance",
-      "Strategic HR planning"
+      "Stronger alignment between business strategy and workforce capabilities",
+      "Reduced hiring risk and faster role fulfilment",
+      "More compliant and scalable HR operations in the UAE",
+      "Improved employee engagement, retention, and performance"
     ]
   },
   "precious-metals": {
     icon: Gem,
     title: "Precious Metals & Gems",
     category: "Commodities",
-    description: "Trusted intermediary services for precious metals and gemstone trading",
-    longDescription: "As trusted intermediaries in the precious metals and gemstone market, we facilitate secure transactions between suppliers and buyers while ensuring authenticity and quality.",
+    description: "Intermediary services for gold, diamonds, and precious stones, with Dubai as a global hub.",
+    longDescription: "Operating strictly as an intermediary, we connect verified buyers and sellers of precious metals and gemstones through Dubai’s regulated ecosystem. Our role is to structure transparent transactions, coordinate due diligence, and facilitate access to reputable exchanges such as DMCC.",
+    highlights: [
+      "Intermediation in the trading of gold, diamonds, and precious stones (graphite, rubies, etc.)",
+      "Dubai as a strategic hub providing access to international exchanges (e.g. DMCC)"
+    ],
     features: [
-      "Authentication services",
-      "Market price monitoring",
-      "Secure transaction facilitation",
-      "Certification assistance",
-      "Storage solutions",
-      "Investment advisory"
+      "Intermediary facilitation for gold, diamonds, and other precious stones",
+      "Vendor and buyer pre‑screening and documentation support",
+      "Transaction structuring aligned with international compliance standards",
+      "Coordination with Dubai‑based exchanges and free‑zones (including DMCC)",
+      "Support with certification, assaying, and secure logistics partners",
+      "Confidential deal handling and stakeholder coordination"
     ],
     benefits: [
-      "Verified authenticity",
-      "Competitive pricing",
-      "Secure transactions",
-      "Expert guidance"
+      "Access to vetted counterparties in the precious metals and gemstone markets",
+      "Lower counterparty and compliance risk in high‑value transactions",
+      "Transparent structures leveraging Dubai’s regulatory and logistics advantages",
+      "Specialised support for institutional and private investors"
     ]
   },
   "ecommerce": {
     icon: Monitor,
     title: "E-Commerce",
     category: "Digital",
-    description: "Digital commerce solutions and online marketplace management",
-    longDescription: "Our e-commerce solutions help businesses establish and grow their online presence through comprehensive digital commerce strategies and marketplace management.",
+    description: "International e-commerce solutions connecting regional products to global buyers.",
+    longDescription: "Our International E‑Commerce practice promotes handicrafts, fashion, and agro‑processed products to worldwide audiences through digital channels. We manage storefronts, logistics, and cross‑border operations using leading carriers such as Aramex and DHL.",
+    highlights: [
+      "Global digital trade through online platforms",
+      "Promotion of handicrafts, fashion, and agro-processed products to international markets",
+      "Strong logistics infrastructure supported by Aramex, DHL, and regional hubs"
+    ],
     features: [
-      "Online store development",
-      "Marketplace integration",
-      "Digital marketing",
-      "Inventory management",
-      "Payment gateway setup",
-      "Analytics and reporting"
+      "Creation and management of branded online stores and marketplace listings",
+      "Digital merchandising for handicrafts, fashion, and agro‑processed products",
+      "Cross‑border shipping integration with major logistics partners",
+      "Payment gateway and currency management for international buyers",
+      "Content and campaign support for global brand visibility",
+      "Order tracking, returns management, and customer‑service coordination"
     ],
     benefits: [
-      "Increased online visibility",
-      "Higher conversion rates",
-      "Streamlined operations",
-      "Data-driven insights"
+      "Access to international customers without heavy physical investment",
+      "More predictable cross‑border logistics through integrated partners",
+      "Stronger brand presence for regional producers and artisans",
+      "Higher conversion and repeat business via optimised digital journeys"
     ]
   },
   "business-management": {
     icon: Briefcase,
     title: "Business Management",
     category: "Management",
-    description: "Strategic business consulting and operational management services",
-    longDescription: "Our business management consultancy provides strategic guidance and operational support to help organizations achieve their goals and optimize performance.",
+    description: "End‑to‑end business management, advisory, and governance support for growing companies.",
+    longDescription: "Our Business Management & Consulting team helps corporates, SMEs, and entrepreneurs structure, scale, and govern their organisations. From strategy and organisation design to investor relations and due diligence, we provide a bridge between UAE‑based capital and African and international producers.",
+    highlights: [
+      "Corporate management, strategy, structuring, and advisory services",
+      "Support to companies and entrepreneurs requiring professional management services",
+      "Advisory for SMEs in expansion, including governance and compliance solutions",
+      "Strategic bridge between investors in the UAE and producers in Africa",
+      "Corporate due diligence services in the UAE (risk mitigation and partner verification)"
+    ],
     features: [
-      "Strategic planning",
-      "Operational optimization",
-      "Process improvement",
-      "Change management",
-      "Financial planning",
-      "Risk assessment"
+      "Strategy design, business planning, and operating‑model definition",
+      "Corporate structuring and governance frameworks for growing companies",
+      "Advisory for SME expansion, including compliance and risk policies",
+      "Transaction support and investor‑readiness for UAE and regional investors",
+      "Partner due‑diligence and background checks in the UAE market",
+      "Intermediation between African producers and UAE‑based investors or buyers"
     ],
     benefits: [
-      "Improved efficiency",
-      "Cost optimization",
-      "Strategic clarity",
-      "Enhanced profitability"
+      "Clearer strategic direction and governance for owners and boards",
+      "Reduced operational and reputational risk when entering new markets",
+      "Better alignment between investors, management teams, and partners",
+      "Higher enterprise value driven by structured growth and compliance"
     ]
   },
   "crude-oil": {
     icon: Fuel,
     title: "Crude Oil Trading",
     category: "Energy",
-    description: "Professional petroleum and energy commodity trading services",
-    longDescription: "Our energy commodities division specializes in crude oil trading, providing market expertise and logistical support for energy sector transactions.",
+    description: "Energy trading and intermediation focused on crude oil and aviation fuel.",
+    longDescription: "Leveraging the UAE’s position as one of the world’s foremost energy hubs, we connect producers, refiners, and large consumers of crude oil and jet fuel. Our role covers commercial intermediation, documentation support, and alignment with international compliance frameworks.",
+    highlights: [
+      "Trading and intermediation of crude oil and aviation fuel",
+      "UAE positioned as one of the world’s leading energy hubs"
+    ],
     features: [
-      "Market analysis",
-      "Price risk management",
-      "Logistics coordination",
-      "Quality specifications",
-      "Documentation services",
-      "Regulatory compliance"
+      "Sourcing and placement of crude oil and aviation fuel cargoes",
+      "Commercial intermediation between producers, traders, and off‑takers",
+      "Support with contract structures, pricing formulas, and shipment terms",
+      "Coordination with logistics partners for marine and pipeline movements",
+      "Documentation support aligned with international sanctions and compliance rules",
+      "Market intelligence on benchmark pricing and demand trends"
     ],
     benefits: [
-      "Market expertise",
-      "Risk mitigation",
-      "Efficient logistics",
-      "Regulatory support"
+      "Improved access to regional and international energy supply",
+      "Reduced counterparty and compliance risk in complex energy deals",
+      "More efficient execution of large‑ticket transactions",
+      "Stronger visibility on pricing, timing, and logistics constraints"
     ]
   },
   "logistics": {
     icon: Truck,
     title: "Logistics",
     category: "Supply Chain",
-    description: "End-to-end supply chain and logistics management solutions",
-    longDescription: "Our logistics services provide comprehensive supply chain solutions, from warehousing to last-mile delivery, ensuring efficient and cost-effective operations.",
+    description: "Integrated logistics services covering transport, storage, and re‑export flows.",
+    longDescription: "We design and coordinate multi‑modal logistics solutions that connect factories, warehouses, ports, and final customers. Using the UAE’s strategic geography, we support land, air, and sea movements with re‑export options to regional markets.",
+    highlights: [
+      "Transportation, storage, and re-export services",
+      "Land, air, and maritime logistics solutions"
+    ],
     features: [
-      "Warehousing solutions",
-      "Transportation management",
-      "Inventory optimization",
-      "Last-mile delivery",
-      "Cross-docking services",
-      "Supply chain analytics"
+      "Road, air, and sea freight coordination for regional and international moves",
+      "Short‑ and long‑term warehousing and storage solutions",
+      "Re‑export flows via UAE ports and free‑zones",
+      "Customs brokerage and documentation support",
+      "Cargo consolidation, cross‑docking, and last‑mile coordination",
+      "Visibility and tracking across key transport milestones"
     ],
     benefits: [
-      "Reduced shipping costs",
-      "Faster delivery times",
-      "Improved inventory turnover",
-      "Enhanced customer satisfaction"
+      "Optimised logistics cost through better routing and mode selection",
+      "Shorter lead times thanks to efficient re‑export and consolidation",
+      "Improved service levels and reliability for end customers",
+      "Greater control and visibility over goods in transit"
     ]
   },
   "agriculture": {
     icon: Wheat,
     title: "Agriculture & Fertilizer",
     category: "Agriculture",
-    description: "Agricultural products and fertilizer trading with quality assurance",
-    longDescription: "We facilitate the trading of agricultural products and fertilizers, connecting farmers and distributors with quality products and reliable supply chains.",
+    description: "Trade in natural and organic fertilizers, pesticides, and agricultural recovery materials.",
+    longDescription: "Our Agriculture & Fertilizers desk focuses on supplying high‑quality inputs that help restore soil health and improve yields. From natural fertilizers to pesticides, we leverage the efficiency of UAE ports to move agricultural inputs quickly and cost‑effectively.",
+    highlights: [
+      "Wholesale trading of natural fertilizers and agricultural recovery materials (import & export)",
+      "Organic fertilizers",
+      "Trading and manufacturing of pesticides",
+      "Strategic advantage of UAE ports with high efficiency and multiple gateways, reducing lead time and re-export costs"
+    ],
     features: [
-      "Quality testing services",
-      "Seasonal sourcing",
-      "Bulk handling capabilities",
-      "Storage facilities",
-      "Transportation services",
-      "Market intelligence"
+      "Sourcing of natural and organic fertilizers for different crop profiles",
+      "Trading of agricultural recovery materials and soil‑improvement products",
+      "Supply and coordination with pesticide manufacturers and formulators",
+      "Bulk and containerised shipment options depending on destination",
+      "Quality documentation and product specification management",
+      "Re‑export flows optimised via multiple UAE ports and gateways"
     ],
     benefits: [
-      "Consistent quality supply",
-      "Competitive pricing",
-      "Seasonal availability",
-      "Expert market knowledge"
+      "Access to reliable, quality‑controlled agricultural inputs",
+      "Shorter delivery times and lower logistics costs for importers",
+      "Better crop performance and soil resilience for end users",
+      "Stronger continuity of supply through diversified sourcing"
     ]
   },
   "travel-agency": {
     icon: Plane,
     title: "Travel Agency",
     category: "Travel",
-    description: "Comprehensive travel planning and booking services for business and leisure",
-    longDescription: "Our travel agency provides complete travel solutions for both corporate and leisure travelers, ensuring memorable experiences and cost-effective travel arrangements.",
+    description: "Corporate and leisure travel planning with end‑to‑end itinerary management.",
+    longDescription: "Our Travel Agency services support both corporate travellers and leisure guests with tailored itineraries, competitive fares, and on‑trip assistance. We manage the full journey from ticketing to accommodation and local experiences.",
+    highlights: [
+      "Corporate and leisure travel planning services",
+      "End-to-end travel arrangements including flights, hotels, and visas"
+    ],
     features: [
-      "Flight booking services",
-      "Hotel reservations",
-      "Visa assistance",
-      "Travel insurance",
-      "Group travel packages",
-      "24/7 customer support"
+      "Flight bookings across major global carriers",
+      "Hotel reservations tailored to budget and travel policy",
+      "Visa and travel‑document assistance for key destinations",
+      "Travel insurance and risk‑management options",
+      "Incentive, group, and conference travel coordination",
+      "24/7 support for itinerary changes and disruptions"
     ],
     benefits: [
       "Best price guarantees",
-      "Personalized service",
-      "Travel support",
-      "Flexible booking options"
+      "Personalized travel experiences for business and leisure",
+      "Reduced administrative burden for companies and travellers",
+      "Greater peace of mind through professional on‑trip support",
+      "Flexible booking, rebooking, and cancellation options"
     ]
   }
 };
@@ -300,23 +351,45 @@ const ServiceDetail = () => {
             <p className="text-xl text-text-secondary mb-8 leading-relaxed">
               {service.longDescription}
             </p>
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity shadow-elegant">
-              Get Started Today
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity shadow-elegant">
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Features & Benefits */}
+      {/* Service Scope, Capabilities & Benefits */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Features */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Service scope */}
             <Card className="shadow-elegant border-0">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary flex items-center">
                   <Star className="w-6 h-6 mr-2" />
-                  Key Features
+                  Service Scope
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  {service.highlights.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-primary-gold mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-text-secondary">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Key capabilities */}
+            <Card className="shadow-elegant border-0">
+              <CardHeader>
+                <CardTitle className="text-2xl text-primary flex items-center">
+                  <Award className="w-6 h-6 mr-2" />
+                  Key Capabilities
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -331,12 +404,12 @@ const ServiceDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Benefits */}
+            {/* Business impact */}
             <Card className="shadow-elegant border-0">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary flex items-center">
                   <Award className="w-6 h-6 mr-2" />
-                  Benefits
+                  Business Impact
                 </CardTitle>
               </CardHeader>
               <CardContent>

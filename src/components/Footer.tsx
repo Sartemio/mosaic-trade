@@ -63,8 +63,8 @@ const Footer = () => {
             <h3 className="font-semibold mb-4 text-primary-gold">{t("contact")}</h3>
             <ul className="space-y-2 text-white/80 text-sm">
               <li>
-                <a href="mailto:biqueglobalenterprise@gmail.com" className="hover:text-primary-gold transition-colors">
-                  biqueglobalenterprise@gmail.com
+                <a href="mailto:info@biqueglobal.com" className="hover:text-primary-gold transition-colors">
+                  info@biqueglobal.com
                 </a>
               </li>
               <li>
