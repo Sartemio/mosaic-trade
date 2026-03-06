@@ -33,7 +33,7 @@ const AboutSection = () => {
                 size="lg" 
                 className="bg-gradient-primary hover:opacity-90 transition-opacity shadow-elegant"
               >
-                {t("learnMore")}
+                {t("learnMoreAboutUs")}
               </Button>
             </Link>
           </div>

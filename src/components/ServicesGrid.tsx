@@ -1,102 +1,33 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { 
-  Globe, 
-  ShoppingCart, 
-  Car, 
-  Users, 
-  Gem, 
-  Monitor, 
-  Briefcase, 
-  Fuel, 
-  Truck, 
-  Wheat,
-  Plane
-} from "lucide-react";
+import { useMemo } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { services } from "@/content/services";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const ServicesGrid = () => {
   const { t } = useLanguage();
 
-  const services = [
-    {
-      id: "general-trading",
-      icon: Globe,
-      titleKey: "generalTrading",
-      descKey: "generalTradingDesc",
-      categoryKey: "categoryExportImport"
-    },
-    {
-      id: "food-beverages",
-      icon: ShoppingCart,
-      titleKey: "foodBeverages",
-      descKey: "foodBeveragesDesc",
-      categoryKey: "categoryFB"
-    },
-    {
-      id: "car-export",
-      icon: Car,
-      titleKey: "carExport",
-      descKey: "carExportDesc",
-      categoryKey: "categoryAutomotive"
-    },
-    {
-      id: "hr-consultancy",
-      icon: Users,
-      titleKey: "hrConsultancy",
-      descKey: "hrConsultancyDesc",
-      categoryKey: "categoryConsultancy"
-    },
-    {
-      id: "precious-metals",
-      icon: Gem,
-      titleKey: "preciousMetals",
-      descKey: "preciousMetalsDesc",
-      categoryKey: "categoryCommodities"
-    },
-    {
-      id: "ecommerce",
-      icon: Monitor,
-      titleKey: "ecommerce",
-      descKey: "ecommerceDesc",
-      categoryKey: "categoryDigital"
-    },
-    {
-      id: "business-management",
-      icon: Briefcase,
-      titleKey: "businessManagement",
-      descKey: "businessManagementDesc",
-      categoryKey: "categoryManagement"
-    },
-    {
-      id: "crude-oil",
-      icon: Fuel,
-      titleKey: "crudeOil",
-      descKey: "crudeOilDesc",
-      categoryKey: "categoryEnergy"
-    },
-    {
-      id: "logistics",
-      icon: Truck,
-      titleKey: "logistics",
-      descKey: "logisticsDesc",
-      categoryKey: "categorySupplyChain"
-    },
-    {
-      id: "agriculture",
-      icon: Wheat,
-      titleKey: "agriculture",
-      descKey: "agricultureDesc",
-      categoryKey: "categoryAgriculture"
-    },
-    {
-      id: "travel-agency",
-      icon: Plane,
-      titleKey: "travelAgency",
-      descKey: "travelAgencyDesc",
-      categoryKey: "categoryTravel"
+  const servicePopupPoints = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const s of services) {
+      map.set(
+        s.id,
+        t(s.popupPointsKey)
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean),
+      );
     }
-  ];
+    return map;
+  }, [t]);
 
   return (
     <section id="services" className="py-20 bg-gradient-subtle">
@@ -111,29 +42,57 @@ const ServicesGrid = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
+          {services.map((service) => {
             const IconComponent = service.icon;
+            const points = servicePopupPoints.get(service.id) ?? [];
+
             return (
-              <Link key={index} to={`/services/${service.id}`}>
-                <Card className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-0 shadow-md bg-white/80 backdrop-blur-sm cursor-pointer h-full">
-                  <CardHeader className="text-center pb-4">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="inline-block px-3 py-1 bg-primary-gold/20 text-primary-gold text-sm rounded-full font-medium mb-2">
-                      {t(service.categoryKey)}
-                    </div>
-                    <CardTitle className="text-xl font-bold text-primary group-hover:text-primary-navy transition-colors">
-                      {t(service.titleKey)}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-text-secondary leading-relaxed">
-                      {t(service.descKey)}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card
+                key={service.id}
+                className="hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-0 shadow-md bg-white/90 h-full"
+              >
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className={`w-12 h-12 rounded-xl ${service.iconBgClass} flex items-center justify-center mb-4`}>
+                    <IconComponent className={`w-6 h-6 ${service.iconFgClass}`} />
+                  </div>
+
+                  <h3 className="text-lg font-bold text-primary mb-2">{t(service.titleKey)}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-5 flex-1">
+                    {t(service.descKey)}
+                  </p>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto justify-start text-primary-gold hover:text-primary-gold/90 font-semibold"
+                      >
+                        {t("learnMore")}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-xl">
+                      <DialogHeader>
+                        <DialogTitle className="text-primary">{t(service.titleKey)}</DialogTitle>
+                      </DialogHeader>
+
+                      <div className="space-y-4">
+                        <p className="text-sm text-text-secondary leading-relaxed">
+                          {t(service.popupIntroKey)}
+                        </p>
+
+                        {points.length > 0 && (
+                          <ul className="list-disc pl-5 space-y-2 text-sm text-text-secondary">
+                            {points.map((p, idx) => (
+                              <li key={idx}>{p}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
