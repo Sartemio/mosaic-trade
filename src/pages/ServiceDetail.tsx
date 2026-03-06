@@ -48,7 +48,7 @@ const serviceDetails = {
   },
   "food-beverages": {
     icon: ShoppingCart,
-    title: "Food & Beverages",
+    title: "Import & Export of Food Products and Non-Alcoholic Beverages",
     category: "F&B Trading",
     description: "International trade of food products and non‑alcoholic beverages with GCC and Asian reach.",
     longDescription: "Our Food & Beverage trade desk focuses on safe, compliant, and efficient movement of food products and non‑alcoholic beverages. Using the UAE as a re‑export hub, we connect producers and brand owners with fast‑growing GCC and Asian markets.",
@@ -73,7 +73,7 @@ const serviceDetails = {
   },
   "car-export": {
     icon: Car,
-    title: "Car Export",
+    title: "Automobile Export",
     category: "Automotive",
     description: "Export of new and used vehicles, spare parts, and custom vehicle upgrades.",
     longDescription: "From individual units to bulk fleets, we manage the export of new and used vehicles and spare parts from the UAE to global markets. Our team also coordinates vehicle customization so that exports meet regulatory, performance, or branding requirements.",
@@ -98,7 +98,7 @@ const serviceDetails = {
   },
   "hr-consultancy": {
     icon: Users,
-    title: "HR Consultancy",
+    title: "Human Resources Consultancy",
     category: "Consultancy",
     description: "Strategic HR consulting, talent management, and workforce mobility for the UAE.",
     longDescription: "Our Human Resources Consultancy supports organisations in the UAE with recruitment, workforce planning, and people‑operations strategies. We help employers attract the right talent, structure compliant employment models, and manage labour mobility across borders.",
@@ -123,7 +123,7 @@ const serviceDetails = {
   },
   "precious-metals": {
     icon: Gem,
-    title: "Precious Metals & Gems",
+    title: "Precious Metals & Gemstones Trading (Intermediary – Non-Seller)",
     category: "Commodities",
     description: "Intermediary services for gold, diamonds, and precious stones, with Dubai as a global hub.",
     longDescription: "Operating strictly as an intermediary, we connect verified buyers and sellers of precious metals and gemstones through Dubai’s regulated ecosystem. Our role is to structure transparent transactions, coordinate due diligence, and facilitate access to reputable exchanges such as DMCC.",
@@ -148,7 +148,7 @@ const serviceDetails = {
   },
   "ecommerce": {
     icon: Monitor,
-    title: "E-Commerce",
+    title: "International E-Commerce",
     category: "Digital",
     description: "International e-commerce solutions connecting regional products to global buyers.",
     longDescription: "Our International E‑Commerce practice promotes handicrafts, fashion, and agro‑processed products to worldwide audiences through digital channels. We manage storefronts, logistics, and cross‑border operations using leading carriers such as Aramex and DHL.",
@@ -174,7 +174,7 @@ const serviceDetails = {
   },
   "business-management": {
     icon: Briefcase,
-    title: "Business Management",
+    title: "Business Management & Consulting",
     category: "Management",
     description: "End‑to‑end business management, advisory, and governance support for growing companies.",
     longDescription: "Our Business Management & Consulting team helps corporates, SMEs, and entrepreneurs structure, scale, and govern their organisations. From strategy and organisation design to investor relations and due diligence, we provide a bridge between UAE‑based capital and African and international producers.",
@@ -202,7 +202,7 @@ const serviceDetails = {
   },
   "crude-oil": {
     icon: Fuel,
-    title: "Crude Oil Trading",
+    title: "Crude Oil & Jet Fuel Trading",
     category: "Energy",
     description: "Energy trading and intermediation focused on crude oil and aviation fuel.",
     longDescription: "Leveraging the UAE’s position as one of the world’s foremost energy hubs, we connect producers, refiners, and large consumers of crude oil and jet fuel. Our role covers commercial intermediation, documentation support, and alignment with international compliance frameworks.",
@@ -227,7 +227,7 @@ const serviceDetails = {
   },
   "logistics": {
     icon: Truck,
-    title: "Logistics",
+    title: "Logistics Services",
     category: "Supply Chain",
     description: "Integrated logistics services covering transport, storage, and re‑export flows.",
     longDescription: "We design and coordinate multi‑modal logistics solutions that connect factories, warehouses, ports, and final customers. Using the UAE’s strategic geography, we support land, air, and sea movements with re‑export options to regional markets.",
@@ -252,7 +252,7 @@ const serviceDetails = {
   },
   "agriculture": {
     icon: Wheat,
-    title: "Agriculture & Fertilizer",
+    title: "Agriculture & Fertilizers",
     category: "Agriculture",
     description: "Trade in natural and organic fertilizers, pesticides, and agricultural recovery materials.",
     longDescription: "Our Agriculture & Fertilizers desk focuses on supplying high‑quality inputs that help restore soil health and improve yields. From natural fertilizers to pesticides, we leverage the efficiency of UAE ports to move agricultural inputs quickly and cost‑effectively.",
@@ -360,43 +360,51 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* Service Scope, Capabilities & Benefits */}
-      <section className="py-16">
+      {/* Overview */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <h2 className="text-3xl font-bold text-primary mb-6">Overview</h2>
+          <div className="prose prose-lg text-text-secondary max-w-none leading-relaxed">
+            <p className="text-lg">{service.longDescription}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer – exact bullets from service scope */}
+      <section className="py-16 bg-gradient-subtle">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Service scope */}
+          <h2 className="text-3xl font-bold text-primary mb-8 text-center">
+            What We Offer
+          </h2>
+          <div className="max-w-3xl mx-auto">
+            <ul className="space-y-4">
+              {service.highlights.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-6 h-6 text-primary-gold flex-shrink-0 mt-0.5" />
+                  <span className="text-text-secondary text-lg">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Capabilities & Benefits – two columns */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Card className="shadow-elegant border-0">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary flex items-center">
                   <Star className="w-6 h-6 mr-2" />
-                  Service Scope
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-4">
-                  {service.highlights.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-primary-gold mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-text-secondary">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Key capabilities */}
-            <Card className="shadow-elegant border-0">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary flex items-center">
-                  <Award className="w-6 h-6 mr-2" />
                   Key Capabilities
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {service.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                       <span className="text-text-secondary">{feature}</span>
                     </li>
                   ))}
@@ -404,19 +412,18 @@ const ServiceDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Business impact */}
             <Card className="shadow-elegant border-0">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary flex items-center">
                   <Award className="w-6 h-6 mr-2" />
-                  Business Impact
+                  Benefits
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {service.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-primary-gold mr-3 mt-0.5 flex-shrink-0" />
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary-gold flex-shrink-0 mt-0.5" />
                       <span className="text-text-secondary">{benefit}</span>
                     </li>
                   ))}
@@ -424,6 +431,20 @@ const ServiceDetail = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Why Choose Bique */}
+      <section className="py-16 bg-gradient-subtle">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
+          <h2 className="text-3xl font-bold text-primary mb-6">
+            Why Choose Bique Global Enterprise
+          </h2>
+          <p className="text-lg text-text-secondary leading-relaxed">
+            We combine deep sector expertise with a strong presence in the UAE and key international markets. 
+            Whether you need trading, consultancy, or end-to-end supply chain support, our team delivers 
+            reliable, compliant, and scalable solutions tailored to your business goals.
+          </p>
         </div>
       </section>
 
